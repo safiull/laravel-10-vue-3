@@ -1,6 +1,6 @@
 <template>
     <h1>Hello world 111111111111. {{ name }}</h1>
-    <Test name="Ms. Safiull" />
+    <Test name="Md. Safiull Alam" />
 </template>
 
 <script>
