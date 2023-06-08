@@ -18,7 +18,7 @@ class DivisionFactory extends Factory
     {
         return [
             'name' => ucfirst($this->faker->word),
-            'description' => ucfirst($this->faker->sentance),
+            'description' => ucfirst($this->faker->sentence),
             'created_at' => now()
         ];
     }

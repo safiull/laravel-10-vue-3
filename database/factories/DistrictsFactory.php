@@ -20,7 +20,7 @@ class DistrictsFactory extends Factory
         return [
             'division_id' => Division::inRandomOrder()->first()->id,
             'name' => ucfirst($this->faker->word),
-            'description' => ucfirst($this->faker->sentance),
+            'description' => ucfirst($this->faker->sentence),
             'created_at' => now()
         ];
     }
