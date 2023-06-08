@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div id="app">
-                        <Divisions name="Dhaka is the capital city of bangladesh." />
+                        <Divisions :divisions="{{ $divisions }}" />
                     </div>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\Division;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +20,10 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+
+    $divisions = Division::latest()->get();
+    return view('dashboard', compact('divisions'));
+
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
