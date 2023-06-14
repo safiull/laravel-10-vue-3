@@ -1,3 +1,3 @@
-function Vapes() {
-    console.log("Okay fine");
-}
+$(document).ready(function() {
+
+})
