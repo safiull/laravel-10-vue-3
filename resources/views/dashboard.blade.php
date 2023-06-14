@@ -43,7 +43,6 @@
     <script src="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
     <script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
-    <script src="{{ asset('assets/js/test.js') }}"></script>
     <script src="{{ asset('assets/js/ui-toasts.js') }}"></script>
 </body>
 
