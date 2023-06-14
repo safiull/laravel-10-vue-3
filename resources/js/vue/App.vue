@@ -189,7 +189,8 @@
                                     data-bs-toggle="dropdown"
                                 >
                                     <div class="avatar avatar-online">
-                                        <img src="../assets/img/avatars/1.png" alt="" class="w-px-40 h-auto rounded-circle"
+                                        <!-- ../assets/img/avatars/1.png     -->
+                                        <img src="" alt="" class="w-px-40 h-auto rounded-circle"
                                         />
                                     </div>
                                 </a>
@@ -201,8 +202,9 @@
                                                     <div
                                                         class="avatar avatar-online"
                                                     >
+                                                    <!-- ../assets/img/avatars/1.png -->
                                                         <img
-                                                            src="../assets/img/avatars/1.png"
+                                                            src=""
                                                             alt=""
                                                             class="w-px-40 h-auto rounded-circle"
                                                         />
