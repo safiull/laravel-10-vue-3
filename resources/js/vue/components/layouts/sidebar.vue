@@ -1,6 +1,4 @@
 <template>
-    <!-- Menu -->
-
     <aside
         id="layout-menu"
         class="layout-menu menu-vertical menu bg-menu-theme"
@@ -131,5 +129,4 @@
             </li>
         </ul>
     </aside>
-    <!-- / Menu -->
 </template>
