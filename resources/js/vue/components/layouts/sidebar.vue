@@ -112,19 +112,25 @@
             <li class="menu-item active">
                 <router-link to="/home" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                    <div data-i18n="Analytics">Home</div>
+                    <div>Home</div>
                 </router-link>
             </li>
             <li class="menu-item active">
                 <router-link to="/customers" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                    <div data-i18n="Analytics">Customers</div>
+                    <div>Customers</div>
                 </router-link>
             </li>
             <li class="menu-item active">
                 <router-link to="/users" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                    <div data-i18n="Analytics">Users</div>
+                    <div>Users</div>
+                </router-link>
+            </li>
+            <li class="menu-item">
+                <router-link to="/categories" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                    <div>Categories</div>
                 </router-link>
             </li>
         </ul>
