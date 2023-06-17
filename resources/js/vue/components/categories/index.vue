@@ -1,3 +1,20 @@
+<script setup>
+import { ref, onMounted } from 'vue'
+
+const categories = ref();
+onMounted(() => {
+    getCategories()
+})
+
+function getCategories() {
+    axios.get('/api/categories')
+    .then(res => {
+        categories.value = res.data
+    });
+}
+
+</script>
+
 <template>
     <div class="row">
         <div class="col-12">
@@ -22,18 +39,17 @@
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
-                            <tr>
+                            <tr v-for="category in categories" :key="category.id">
                                 <td>
                                     <i
                                         class="fab fa-angular fa-lg text-danger me-3"
                                     ></i>
-                                    <strong>Angular Project</strong>
+                                    <strong>{{ category.name }}</strong>
                                 </td>
-                                <td>Albert Cook</td>
+                                <td>{{ category.description }}</td>
                                 <td>
-                                    <span class="badge bg-label-primary me-1"
-                                        >Active</span
-                                    >
+                                    <span v-if="category.status == 1" class="badge bg-label-primary me-1">Active</span>
+                                    <span v-if="category.status == 0" class="badge bg-label-danger me-1">InActive</span>
                                 </td>
                                 <td>
                                     <div class="dropdown">
