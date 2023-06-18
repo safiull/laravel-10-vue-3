@@ -11,7 +11,18 @@ const formData = ref({
 });
 
 function register() {
-    
+    axios.post('/api/register', formData.value)
+    .then(res => {
+        if (res.data?.data?.token) {
+            toastr.success("Login successfully.");
+            localStorage.setItem('token', res.data.data.token)
+            router.push('/dashboard');
+        }
+    })
+    .catch(error => {
+        console.log(error.response?.data?.message);
+        toastr.error(error.response?.data?.message);
+    })
 }
 </script>
 
@@ -124,14 +135,14 @@ function register() {
             <h4 class="mb-2">Adventure starts here 🚀</h4>
             <p class="mb-4">Make your app management easy and fun!</p>
 
-            <form >
+            <form @submit.prevent="register">
                 <div class="mb-3 fv-plugins-icon-container">
                     <label for="username" class="form-label">Username</label>
                     <input
+                        v-model="formData.name"
                         type="text"
                         class="form-control"
                         id="username"
-                        name="username"
                         placeholder="Enter your username"
                     />
                     <div
@@ -141,10 +152,10 @@ function register() {
                 <div class="mb-3 fv-plugins-icon-container">
                     <label for="email" class="form-label">Email</label>
                     <input
+                        v-model="formData.email"
                         type="text"
                         class="form-control"
                         id="email"
-                        name="email"
                         placeholder="Enter your email"
                     />
                     <div
@@ -157,10 +168,10 @@ function register() {
                     <label class="form-label" for="password">Password</label>
                     <div class="input-group input-group-merge has-validation">
                         <input
+                            v-model="formData.password"
                             type="password"
                             id="password"
                             class="form-control"
-                            name="password"
                             placeholder="············"
                             aria-describedby="password"
                         />

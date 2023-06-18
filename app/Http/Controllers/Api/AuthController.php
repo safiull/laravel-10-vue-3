@@ -8,12 +8,12 @@ use App\Http\Controllers\Controller;
 
 class AuthController extends Controller
 {
-    public function registration(Request $request)
+    public function register(Request $request)
     {
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required',
+            'password' => 'required|min:4',
         ]);
 
         $user = User::create($request->except('password') + [
