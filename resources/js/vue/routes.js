@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from "vue-router";
 import authLayout from "./components/layouts/authLayout.vue";
 import adminLayout from "./components/layouts/adminLayout.vue";
 import Login from "./components/auth/login.vue";
+import Register from "./components/auth/register.vue";
+
 import NotFound from "./components/layouts/notFound.vue";
 import Dashboard from "./components/dashboard/index.vue";
 import Users from "./components/users/index.vue";
@@ -64,6 +66,17 @@ const routes = [
                 path: "",
                 component: Login,
                 name: "login",
+            },
+        ],
+    },
+    {
+        path: "/register",
+        component: authLayout,
+        children: [
+            {
+                path: "",
+                component: Register,
+                name: "register",
             },
         ],
     },
