@@ -112,7 +112,7 @@
             <li class="menu-item">
                 <router-link to="/dashboard" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                    <div data-i18n="Analytics">Dashboard</div>
+                    <div>Dashboard</div>
                 </router-link>
             </li>
             <li class="menu-item">

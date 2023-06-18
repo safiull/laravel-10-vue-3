@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CategoryController;
 
 /*
@@ -15,8 +15,9 @@ use App\Http\Controllers\Api\CategoryController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/registration', [AuthController::class, 'registration'])->name('registration');
 
-Route::apiResource('categories', CategoryController::class);
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::apiResource('categories', CategoryController::class);
+});
