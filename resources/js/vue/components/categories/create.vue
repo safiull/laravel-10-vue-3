@@ -1,0 +1,95 @@
+<script setup>
+import { ref } from "vue";
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const formData = ref({
+    name: "",
+    status: "",
+    description: "",
+});
+
+function submitForm() {
+    axios.post('/api/categories', formData.value)
+    .then(res => {
+        toastr.success(res.data)
+        router.push('/categories');
+    })
+    .catch(error => {
+        toastr.error(error)
+    })
+}
+
+
+</script>
+
+<template>
+    <div class="row">
+        <div class="col-12">
+            <div class="row justify-content-between mb-1">
+                <div class="col">
+                    <h5>Dashboard / Add new category</h5>
+                </div>
+                <div class="col text-end">
+                    <router-link
+                        :to="{ name: 'categories.index' }"
+                        class="btn btn-sm btn-primary"
+                        ><i class="bx bx-list-ul"></i> View List</router-link
+                    >
+                </div>
+            </div>
+            <div class="card mb-4">
+                <div
+                    class="card-header d-flex justify-content-between align-items-center"
+                >
+                    <h5 class="mb-0">Add new category</h5>
+                </div>
+                <div class="card-body">
+                    <form @submit.prevent="submitForm()">
+                        <div class="mb-3">
+                            <label
+                                class="form-label"
+                                for="basic-default-fullname"
+                                >Category name</label
+                            >
+                            <input
+                                type="text"
+                                v-model="formData.name"
+                                class="form-control"
+                                id="basic-default-fullname"
+                                placeholder="John Doe"
+                            />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="status">Status</label>
+                            <select v-model="formData.status" id="status" class="form-control">
+                                <option value="">Select Status</option>
+                                <option value="1">Active</option>
+                                <option value="0">InActive</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label
+                                class="form-label"
+                                for="basic-default-message"
+                                >Description</label
+                            >
+                            <textarea
+                                v-model="formData.description"
+                                id="basic-default-message"
+                                class="form-control"
+                                placeholder="Hi, Do you have a moment to talk Joe?"
+                            ></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-sm text-end">
+                            <i class="bx bx-save"></i> Save
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

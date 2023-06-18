@@ -4,6 +4,9 @@ import Users from "./components/users/index.vue";
 import Customers from "./components/customers/index.vue";
 import CustomersAddNew from "./components/customers/AddNew.vue";
 
+import Categories from "./components/categories/index.vue";
+import CategoriesCreate from "./components/categories/create.vue";
+
 const routes = [
     {
         path: "/dashboard",
@@ -22,6 +25,16 @@ const routes = [
         path: "/customers/create",
         component: CustomersAddNew,
         name: 'customers.create'
+    },
+    {
+        path: "/categories",
+        component: Categories,
+        name: 'categories.index'
+    },
+    {
+        path: "/categories/create",
+        component: CategoriesCreate,
+        name: 'categories.create'
     },
 ];
 
