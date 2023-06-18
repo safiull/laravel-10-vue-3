@@ -109,19 +109,19 @@
 
         <ul class="menu-inner py-1">
             <!-- Dashboard -->
-            <li class="menu-item active">
-                <router-link to="/home" class="menu-link">
+            <li class="menu-item">
+                <router-link to="/dashboard" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                    <div data-i18n="Analytics">Home</div>
+                    <div data-i18n="Analytics">Dashboard</div>
                 </router-link>
             </li>
-            <li class="menu-item active">
+            <li class="menu-item">
                 <router-link to="/customers" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-home-circle"></i>
                     <div data-i18n="Analytics">Customers</div>
                 </router-link>
             </li>
-            <li class="menu-item active">
+            <li class="menu-item">
                 <router-link to="/users" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-home-circle"></i>
                     <div data-i18n="Analytics">Users</div>

@@ -1,12 +1,13 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "./components/home/index.vue";
+import Dashboard from "./components/dashboard/index.vue";
 import Users from "./components/users/index.vue";
 import Customers from "./components/customers/index.vue";
+import CustomersAddNew from "./components/customers/AddNew.vue";
 
 const routes = [
     {
-        path: "/home",
-        component: Home,
+        path: "/dashboard",
+        component: Dashboard,
     },
     {
         path: "/users",
@@ -15,6 +16,12 @@ const routes = [
     {
         path: "/customers",
         component: Customers,
+        name: 'customers.index'
+    },
+    {
+        path: "/customers/create",
+        component: CustomersAddNew,
+        name: 'customers.create'
     },
 ];
 

@@ -15,9 +15,7 @@ import Footer from './components/layouts/footer.vue'
                 <div class="content-wrapper">
 
                     <div class="container-xxl flex-grow-1 container-p-y">
-                        <div class="row">
-                            <router-view></router-view>
-                        </div>
+                        <router-view></router-view>
                     </div>
 
                     <Footer />
