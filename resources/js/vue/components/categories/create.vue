@@ -17,7 +17,8 @@ function submitForm() {
         router.push('/categories');
     })
     .catch(error => {
-        toastr.error(error)
+        console.log(error)
+        toastr.error(error.data)
     })
 }
 
