@@ -1,6 +1,12 @@
 <script setup>
 import { ref } from "vue";
-import { useRouter } from 'vue-router'
+import { useRouter } from 'vue-router';
+import { defineRule, Form, Field, ErrorMessage } from 'vee-validate';
+import { required, min, max } from '@vee-validate/rules';
+
+defineRule('required', required);
+defineRule('min', min);
+defineRule('max', max);
 
 const router = useRouter()
 
@@ -21,7 +27,6 @@ function submitForm() {
         toastr.error(error.data)
     })
 }
-
 
 </script>
 
@@ -47,20 +52,23 @@ function submitForm() {
                     <h5 class="mb-0">Add new category</h5>
                 </div>
                 <div class="card-body">
-                    <form @submit.prevent="submitForm()">
+                    <Form @submit="submitForm()">
                         <div class="mb-3">
                             <label
                                 class="form-label"
                                 for="basic-default-fullname"
                                 >Category name</label
                             >
-                            <input
+                            <Field
+                                rules="required|min:4|max:10"
                                 type="text"
                                 v-model="formData.name"
+                                name="Name"
                                 class="form-control"
                                 id="basic-default-fullname"
                                 placeholder="John Doe"
                             />
+                            <ErrorMessage class="text-danger" name="Name" />
                         </div>
 
                         <div class="mb-3">
@@ -88,7 +96,7 @@ function submitForm() {
                         <button type="submit" class="btn btn-primary btn-sm text-end">
                             <i class="bx bx-save"></i> Save
                         </button>
-                    </form>
+                    </Form>
                 </div>
             </div>
         </div>
