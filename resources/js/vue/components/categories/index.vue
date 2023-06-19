@@ -13,6 +13,14 @@ function getCategories() {
     });
 }
 
+function deleteItem(id) {
+    axios.delete(`/api/categories/${id}`)
+    .then(res => {
+        categories.value = categories.value.filter(category => category.id !== id);
+        toastr.success(res.data);
+    });
+}
+
 </script>
 
 <template>
@@ -29,7 +37,7 @@ function getCategories() {
             <div class="card">
                 <h5 class="card-header">Categories List</h5>
                 <div class="table-responsive text-nowrap">
-                    <table class="table">
+                    <table class="table pb-5">
                         <thead class="table-light">
                             <tr>
                                 <th>Name</th>
@@ -72,6 +80,7 @@ function getCategories() {
                                                 Edit</a
                                             >
                                             <a
+                                                @click="deleteItem(category.id)"
                                                 class="dropdown-item"
                                                 href="javascript:void(0);"
                                                 ><i
