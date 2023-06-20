@@ -1,15 +1,25 @@
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useCategoryStore } from './../../pinia/categories';
+
+const categoryStore = useCategoryStore();
 
 const categories = ref();
 onMounted(() => {
-    getCategories()
-})
+  if (categoryStore.categories.length > 0) {
+    // If categories exist in the state, use them
+    categories.value = categoryStore.categories;
+  } else {
+    // Otherwise, fetch categories from the API
+    getCategories();
+  }
+});
 
 function getCategories() {
     axios.get('/api/categories')
     .then(res => {
         categories.value = res.data
+        categoryStore.setCategories(res.data);
     });
 }
 

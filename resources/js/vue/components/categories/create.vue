@@ -3,6 +3,7 @@ import { ref } from "vue";
 import { useRouter } from 'vue-router';
 import { defineRule, Form, Field, ErrorMessage } from 'vee-validate';
 import { required, min, max } from '@vee-validate/rules';
+import { useCategoryStore } from './../../pinia/categories';
 
 defineRule('required', required);
 defineRule('min', min);
@@ -19,6 +20,7 @@ const formData = ref({
 function submitForm() {
     axios.post('/api/categories', formData.value)
     .then(res => {
+        categoryStore.addCategory(res.data);
         toastr.success(res.data)
         router.push('/categories');
     })
