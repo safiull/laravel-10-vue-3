@@ -10,10 +10,9 @@ import NotFound from "./components/layouts/notFound.vue";
 
 import Dashboard from "./components/dashboard/index.vue";
 import Users from "./components/users/index.vue";
-import Customers from "./components/customers/index.vue";
-import CustomersAddNew from "./components/customers/AddNew.vue";
 import Categories from "./components/categories/index.vue";
 import CategoriesCreate from "./components/categories/create.vue";
+import CategoriesEdit from "./components/categories/edit.vue";
 
 const routes = [
     {
@@ -27,20 +26,6 @@ const routes = [
                 name: "dashboard",
             },
             {
-                path: "/users",
-                component: Users,
-            },
-            {
-                path: "/customers",
-                component: Customers,
-                name: "customers.index",
-            },
-            {
-                path: "/customers/create",
-                component: CustomersAddNew,
-                name: "customers.create",
-            },
-            {
                 path: "/categories",
                 component: Categories,
                 name: "categories.index",
@@ -49,6 +34,15 @@ const routes = [
                 path: "/categories/create",
                 component: CategoriesCreate,
                 name: "categories.create",
+            },
+            {
+                path: "/categories/:id/edit",
+                component: CategoriesEdit,
+                name: "categories.edit",
+            },
+            {
+                path: "/users",
+                component: Users,
             },
         ],
     },

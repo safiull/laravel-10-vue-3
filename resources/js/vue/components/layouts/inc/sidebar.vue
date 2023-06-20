@@ -116,21 +116,15 @@
                 </router-link>
             </li>
             <li class="menu-item">
-                <router-link to="/customers" class="menu-link">
+                <router-link to="/categories" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                    <div>Customers</div>
+                    <div>Categories</div>
                 </router-link>
             </li>
             <li class="menu-item">
                 <router-link to="/users" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-home-circle"></i>
                     <div>Users</div>
-                </router-link>
-            </li>
-            <li class="menu-item">
-                <router-link to="/categories" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                    <div>Categories</div>
                 </router-link>
             </li>
         </ul>

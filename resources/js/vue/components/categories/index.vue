@@ -71,13 +71,13 @@ function deleteItem(id) {
                                             ></i>
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a
+                                            <router-link
                                                 class="dropdown-item"
-                                                href="javascript:void(0);"
+                                                :to="{ name: 'categories.edit', params: { id: category.id } }"
                                                 ><i
                                                     class="bx bx-edit-alt me-1"
                                                 ></i>
-                                                Edit</a
+                                                Edit</router-link
                                             >
                                             <a
                                                 @click="deleteItem(category.id)"
