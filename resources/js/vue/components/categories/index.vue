@@ -1,38 +1,3 @@
-<script setup>
-import { ref, onMounted } from 'vue'
-import { useCategoryStore } from './../../pinia/categories';
-
-const categoryStore = useCategoryStore();
-
-const categories = ref();
-onMounted(() => {
-  if (categoryStore.categories.length > 0) {
-    // If categories exist in the state, use them
-    categories.value = categoryStore.categories;
-  } else {
-    // Otherwise, fetch categories from the API
-    getCategories();
-  }
-});
-
-function getCategories() {
-    axios.get('/api/categories')
-    .then(res => {
-        categories.value = res.data
-        categoryStore.setCategories(res.data);
-    });
-}
-
-function deleteItem(id) {
-    axios.delete(`/api/categories/${id}`)
-    .then(res => {
-        categories.value = categories.value.filter(category => category.id !== id);
-        toastr.success(res.data);
-    });
-}
-
-</script>
-
 <template>
     <div class="row">
         <div class="col-12">
@@ -41,7 +6,11 @@ function deleteItem(id) {
                     <h5>Dashboard / Categories List</h5>
                 </div>
                 <div class="col text-end">
-                    <router-link :to="{ name: 'categories.create' }" class="btn btn-sm btn-primary"><i class='bx bx-plus-circle'></i> Add New</router-link>
+                    <router-link
+                        :to="{ name: 'categories.create' }"
+                        class="btn btn-sm btn-primary"
+                        ><i class="bx bx-plus-circle"></i> Add New</router-link
+                    >
                 </div>
             </div>
             <div class="card">
@@ -57,7 +26,10 @@ function deleteItem(id) {
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
-                            <tr v-for="category in categories" :key="category.id">
+                            <tr
+                                v-for="category in categories"
+                                :key="category.id"
+                            >
                                 <td>
                                     <i
                                         class="fab fa-angular fa-lg text-danger me-3"
@@ -66,8 +38,16 @@ function deleteItem(id) {
                                 </td>
                                 <td>{{ category.description }}</td>
                                 <td>
-                                    <span v-if="category.status == 1" class="badge bg-label-primary me-1">Active</span>
-                                    <span v-if="category.status == 0" class="badge bg-label-danger me-1">InActive</span>
+                                    <span
+                                        v-if="category.status == 1"
+                                        class="badge bg-label-primary me-1"
+                                        >Active</span
+                                    >
+                                    <span
+                                        v-if="category.status == 0"
+                                        class="badge bg-label-danger me-1"
+                                        >InActive</span
+                                    >
                                 </td>
                                 <td>
                                     <div class="dropdown">
@@ -83,7 +63,10 @@ function deleteItem(id) {
                                         <div class="dropdown-menu">
                                             <router-link
                                                 class="dropdown-item"
-                                                :to="{ name: 'categories.edit', params: { id: category.id } }"
+                                                :to="{
+                                                    name: 'categories.edit',
+                                                    params: { id: category.id },
+                                                }"
                                                 ><i
                                                     class="bx bx-edit-alt me-1"
                                                 ></i>
@@ -105,7 +88,44 @@ function deleteItem(id) {
                         </tbody>
                     </table>
                 </div>
+                <Pagination
+                    :total-pages="totalPages"
+                    @page-change="fetchData"
+                />
             </div>
         </div>
     </div>
 </template>
+
+<script setup>
+import axios from "axios";
+import { ref, onMounted } from "vue";
+import Pagination from "./../pagination.vue";
+
+const currentPage = ref(1);
+const totalPages = ref(0);
+const categories = ref([]);
+
+const fetchData = (page) => {
+    axios
+        .get("/api/categories", {
+            params: { page },
+        })
+        .then((res) => {
+            categories.value = res.data.data;
+            totalPages.value = res.data.last_page;
+        });
+};
+
+onMounted(() => {
+    fetchData(currentPage.value);
+});
+
+function deleteItem(id) {
+    axios.delete(`/api/categories/${id}`).then((res) => {
+        categories.value = categories.value.filter(
+            (category) => category.id !== id
+        );
+    });
+}
+</script>

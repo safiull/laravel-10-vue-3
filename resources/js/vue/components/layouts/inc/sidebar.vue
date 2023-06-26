@@ -109,19 +109,33 @@
 
         <ul class="menu-inner py-1">
             <!-- Dashboard -->
-            <li class="menu-item">
+            <li
+                :class="{
+                    'menu-item': true,
+                    active: $route.path === '/dashboard',
+                }"
+            >
                 <router-link to="/dashboard" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-home-circle"></i>
                     <div>Dashboard</div>
                 </router-link>
             </li>
-            <li class="menu-item">
+            <li
+                :class="{
+                    'menu-item': true,
+                    active:
+                        $route.name === 'categories.index' || $route.name === 'categories.create' || $route.name === 'categories.edit',
+                }"
+            >
                 <router-link to="/categories" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-home-circle"></i>
                     <div>Categories</div>
                 </router-link>
             </li>
-            <li class="menu-item">
+
+            <li
+                :class="{ 'menu-item': true, active: $route.path === '/users' }"
+            >
                 <router-link to="/users" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-home-circle"></i>
                     <div>Users</div>

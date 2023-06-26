@@ -2,12 +2,13 @@
 import { ref } from "vue";
 import { useRouter } from 'vue-router';
 import { defineRule, Form, Field, ErrorMessage } from 'vee-validate';
-import { required, min, max } from '@vee-validate/rules';
+import { required, min } from '@vee-validate/rules';
 import { useCategoryStore } from './../../pinia/categories';
+
+// const categoryStore = useCategoryStore();
 
 defineRule('required', required);
 defineRule('min', min);
-defineRule('max', max);
 
 const router = useRouter()
 
@@ -20,7 +21,7 @@ const formData = ref({
 function submitForm() {
     axios.post('/api/categories', formData.value)
     .then(res => {
-        categoryStore.addCategory(res.data);
+        // categoryStore.addCategory(res.data);
         toastr.success(res.data)
         router.push('/categories');
     })
@@ -62,7 +63,7 @@ function submitForm() {
                                 >Category name</label
                             >
                             <Field
-                                rules="required|min:4|max:10"
+                                rules="required|min:4"
                                 type="text"
                                 v-model="formData.name"
                                 name="Name"
