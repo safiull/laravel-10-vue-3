@@ -1,14 +1,12 @@
 import { createApp } from "vue";
-import { createPinia } from 'pinia';
-import { useCategoryStore } from './pinia/categories';
+import { createPinia } from 'pinia'
 
 import router from "./routes";
 import App from "./App.vue";
 
 const app = createApp(App);
-const pinia = createPinia();
+const pinia = createPinia()
 
-pinia.use(useCategoryStore);
-app.use(pinia);
 app.use(router);
+app.use(pinia)
 app.mount("#app");

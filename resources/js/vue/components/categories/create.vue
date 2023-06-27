@@ -3,7 +3,7 @@ import { ref } from "vue";
 import { useRouter } from 'vue-router';
 import { defineRule, Form, Field, ErrorMessage } from 'vee-validate';
 import { required, min } from '@vee-validate/rules';
-import { useCategoryStore } from './../../pinia/categories';
+import { useCategoryStore } from './../../stores/categories';
 
 // const categoryStore = useCategoryStore();
 
