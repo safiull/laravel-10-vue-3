@@ -1,9 +1,13 @@
 import { defineStore } from "pinia";
 
-export const useCategoryStore = defineStore("categories", {
-    state: () => ({
-        categories: [],
-    }),
+export const useCategoriesStore = defineStore("CategoriesStore", {
+    state: () => {
+        return {
+            categories: [],
+            currentPage: 1,
+            totalPages: 0,
+        }
+    },
     actions: {
         addCategory(category) {
             this.categories.push(category);

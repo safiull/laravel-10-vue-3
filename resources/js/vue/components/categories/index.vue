@@ -27,7 +27,7 @@
                         </thead>
                         <tbody class="table-border-bottom-0">
                             <tr
-                                v-for="category in categories"
+                                v-for="category in categoriesStore.categories"
                                 :key="category.id"
                             >
                                 <td>
@@ -89,7 +89,7 @@
                     </table>
                 </div>
                 <Pagination
-                    :total-pages="totalPages"
+                    :total-pages="categoriesStore.totalPages"
                     @page-change="fetchData"
                 />
             </div>
@@ -100,11 +100,10 @@
 <script setup>
 import axios from "axios";
 import { ref, onMounted } from "vue";
+import { useCategoriesStore } from "@/stores/CategoriesStore";
 import Pagination from "./../pagination.vue";
 
-const currentPage = ref(1);
-const totalPages = ref(0);
-const categories = ref([]);
+const categoriesStore = useCategoriesStore();
 
 const fetchData = (page) => {
     axios
@@ -112,13 +111,16 @@ const fetchData = (page) => {
             params: { page },
         })
         .then((res) => {
-            categories.value = res.data.data;
-            totalPages.value = res.data.last_page;
+            categoriesStore.categories = res.data.data;
+            categoriesStore.totalPages = res.data.last_page;
+            console.log(categoriesStore.totalPages);
         });
 };
 
 onMounted(() => {
-    fetchData(currentPage.value);
+    if (categoriesStore.categories.length === 0) {
+        fetchData(categoriesStore.currentPage);
+    }
 });
 
 function deleteItem(id) {
