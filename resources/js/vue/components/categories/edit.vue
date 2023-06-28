@@ -2,11 +2,13 @@
 import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from 'vue-router';
 import { defineRule, Form, Field, ErrorMessage } from 'vee-validate';
-import { required, min, max } from '@vee-validate/rules';
+import { required, min } from '@vee-validate/rules';
+import { useCategoriesStore } from "@/stores/CategoriesStore";
+
+const categoriesStore = useCategoriesStore();
 
 defineRule('required', required);
 defineRule('min', min);
-defineRule('max', max);
 
 const route = useRoute();
 const router = useRouter();
@@ -16,6 +18,7 @@ const formData = ref({
     name: "",
     status: "",
     description: "",
+    id: route.params.id,
 });
 
 onMounted(() => {
@@ -23,15 +26,24 @@ onMounted(() => {
 })
 
 function getCategory(id) {
-    axios.get(`/api/categories/${id}`)
-    .then(res => {
-        formData.value = res.data
-    })
+    const category = categoriesStore.getCategoryById(id);
+    console.log(category);
+    if (category) {
+        console.log("State")
+        formData.value = { ...category };
+    } else {
+        console.log("Request")
+        axios.get(`/api/categories/${id}`)
+            .then(res => {
+                formData.value = res.data
+            })
+    }
 }
 
 function submitForm() {
     axios.put(`/api/categories/${id}`, formData.value)
     .then(res => {
+        categoriesStore.updateCategory(formData.value);
         toastr.success(res.data)
         router.push('/categories');
     })
@@ -72,7 +84,7 @@ function submitForm() {
                                 >Category name</label
                             >
                             <Field
-                                rules="required|min:4|max:10"
+                                rules="required|min:4"
                                 type="text"
                                 v-model="formData.name"
                                 name="Name"
