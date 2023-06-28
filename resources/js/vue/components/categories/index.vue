@@ -100,8 +100,8 @@
 <script setup>
 import axios from "axios";
 import { ref, onMounted } from "vue";
-import { useCategoriesStore } from "@/stores/CategoriesStore";
 import Pagination from "./../pagination.vue";
+import { useCategoriesStore } from "@/stores/CategoriesStore";
 
 const categoriesStore = useCategoriesStore();
 
@@ -113,7 +113,6 @@ const fetchData = (page) => {
         .then((res) => {
             categoriesStore.categories = res.data.data;
             categoriesStore.totalPages = res.data.last_page;
-            console.log(categoriesStore.totalPages);
         });
 };
 
@@ -125,8 +124,8 @@ onMounted(() => {
 
 function deleteItem(id) {
     axios.delete(`/api/categories/${id}`).then((res) => {
-        categories.value = categories.value.filter(
-            (category) => category.id !== id
+        categoriesStore.categories = categoriesStore.categories.filter((category) =>
+            category.id !== id
         );
     });
 }

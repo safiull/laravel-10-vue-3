@@ -3,9 +3,9 @@ import { ref } from "vue";
 import { useRouter } from 'vue-router';
 import { defineRule, Form, Field, ErrorMessage } from 'vee-validate';
 import { required, min } from '@vee-validate/rules';
-import { useCategoryStore } from './../../stores/categories';
+import { useCategoriesStore } from "@/stores/CategoriesStore";
 
-// const categoryStore = useCategoryStore();
+const categoriesStore = useCategoriesStore();
 
 defineRule('required', required);
 defineRule('min', min);
@@ -21,8 +21,8 @@ const formData = ref({
 function submitForm() {
     axios.post('/api/categories', formData.value)
     .then(res => {
-        // categoryStore.addCategory(res.data);
-        toastr.success(res.data)
+        categoriesStore.addCategory(res.data.data);
+        toastr.success(res.data.message)
         router.push('/categories');
     })
     .catch(error => {
