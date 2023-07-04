@@ -1,8 +1,5 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use App\Models\Division;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
