@@ -98,8 +98,7 @@
 </template>
 
 <script setup>
-import axios from "axios";
-import { ref, onMounted } from "vue";
+import { onMounted } from "vue";
 import Pagination from "./../pagination.vue";
 import { useCategoriesStore } from "@/stores/CategoriesStore";
 
