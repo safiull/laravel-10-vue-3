@@ -3,13 +3,13 @@ import { createPinia } from 'pinia'
 
 import router from "./routes";
 import App from "./App.vue";
-import clientApi from "./axios";
+import clientApi from "./clientApi.js"; // Update the import path here
 
-window.axios = clientApi
+window.axios = clientApi;
 
 const app = createApp(App);
-const pinia = createPinia()
+const pinia = createPinia();
 
 app.use(router);
-app.use(pinia)
+app.use(pinia);
 app.mount("#app");

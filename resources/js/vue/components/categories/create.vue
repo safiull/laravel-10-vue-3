@@ -19,7 +19,7 @@ const formData = ref({
 });
 
 function submitForm() {
-    axios.post('/api/categories', formData.value)
+    clientApi.post('/api/categories', formData.value)
     .then(res => {
         categoriesStore.addCategory(res.data.data);
         toastr.success(res.data.message)

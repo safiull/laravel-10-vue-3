@@ -11,7 +11,7 @@ const formData = ref({
 });
 
 function register() {
-    axios.post('/api/register', formData.value)
+    clientApi.post('/api/register', formData.value)
     .then(res => {
         if (res.data?.data?.token) {
             toastr.success("Login successfully.");

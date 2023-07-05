@@ -105,7 +105,7 @@ import { useCategoriesStore } from "@/stores/CategoriesStore";
 const categoriesStore = useCategoriesStore();
 
 const fetchData = (page) => {
-    axios
+    clientApi
         .get("/api/categories", {
             params: { page },
         })
@@ -122,7 +122,7 @@ onMounted(() => {
 });
 
 function deleteItem(id) {
-    axios.delete(`/api/categories/${id}`).then((res) => {
+    clientApi.delete(`/api/categories/${id}`).then((res) => {
         categoriesStore.categories = categoriesStore.categories.filter((category) =>
             category.id !== id
         );

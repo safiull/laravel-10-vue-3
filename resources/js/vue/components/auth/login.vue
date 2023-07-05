@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router';
+import clientApi from './../../clientApi.js'
 
 const router = useRouter();
 
@@ -10,7 +11,7 @@ const formData = ref({
 })
 
 function login() {
-    axios.post('/api/login', formData.value)
+    clientApi.post('/login', formData.value)
     .then(res => {
         if (res.data?.data?.token) {
             toastr.success("Login successfully.");

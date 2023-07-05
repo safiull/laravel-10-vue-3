@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('test', function() {
-    return session()->all();
+    $user = auth()->user();
+    // $user->currentAccessToken()->delete();
+    return 'done';
 });
 
 Route::get('/{path}', function () {

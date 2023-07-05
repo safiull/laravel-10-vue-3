@@ -33,7 +33,7 @@ function getCategory(id) {
         formData.value = { ...category };
     } else {
         console.log("Request")
-        axios.get(`/api/categories/${id}`)
+        clientApi.get(`/api/categories/${id}`)
             .then(res => {
                 formData.value = res.data
             })
@@ -41,7 +41,7 @@ function getCategory(id) {
 }
 
 function submitForm() {
-    axios.put(`/api/categories/${id}`, formData.value)
+    clientApi.put(`/api/categories/${id}`, formData.value)
     .then(res => {
         categoriesStore.updateCategory(formData.value);
         toastr.success(res.data)
