@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted } from "vue";
+import clientApi from './../../clientApi.js';
 import { useRoute, useRouter } from 'vue-router';
 import { defineRule, Form, Field, ErrorMessage } from 'vee-validate';
 import { required, min } from '@vee-validate/rules';

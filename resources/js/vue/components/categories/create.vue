@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import { useRouter } from 'vue-router';
+import clientApi from './../../clientApi.js';
 import { defineRule, Form, Field, ErrorMessage } from 'vee-validate';
 import { required, min } from '@vee-validate/rules';
 import { useCategoriesStore } from "@/stores/CategoriesStore";

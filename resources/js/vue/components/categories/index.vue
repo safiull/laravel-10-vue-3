@@ -99,6 +99,7 @@
 
 <script setup>
 import { onMounted } from "vue";
+import clientApi from './../../clientApi.js';
 import Pagination from "./../pagination.vue";
 import { useCategoriesStore } from "@/stores/CategoriesStore";
 
