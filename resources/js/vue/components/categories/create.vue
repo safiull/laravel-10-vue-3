@@ -20,7 +20,7 @@ const formData = ref({
 });
 
 function submitForm() {
-    clientApi.post('/api/categories', formData.value)
+    clientApi.post('/categories', formData.value)
     .then(res => {
         categoriesStore.addCategory(res.data.data);
         toastr.success(res.data.message)

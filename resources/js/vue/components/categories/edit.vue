@@ -34,7 +34,7 @@ function getCategory(id) {
         formData.value = { ...category };
     } else {
         console.log("Request")
-        clientApi.get(`/api/categories/${id}`)
+        clientApi.get(`/categories/${id}`)
             .then(res => {
                 formData.value = res.data
             })
@@ -42,7 +42,7 @@ function getCategory(id) {
 }
 
 function submitForm() {
-    clientApi.put(`/api/categories/${id}`, formData.value)
+    clientApi.put(`/categories/${id}`, formData.value)
     .then(res => {
         categoriesStore.updateCategory(formData.value);
         toastr.success(res.data)

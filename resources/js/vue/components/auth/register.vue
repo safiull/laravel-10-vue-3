@@ -12,7 +12,7 @@ const formData = ref({
 });
 
 function register() {
-    clientApi.post('/api/register', formData.value)
+    clientApi.post('/register', formData.value)
     .then(res => {
         if (res.data?.data?.token) {
             toastr.success("Login successfully.");

@@ -107,7 +107,7 @@ const categoriesStore = useCategoriesStore();
 
 const fetchData = (page) => {
     clientApi
-        .get("/api/categories", {
+        .get("/categories", {
             params: { page },
         })
         .then((res) => {
@@ -123,7 +123,7 @@ onMounted(() => {
 });
 
 function deleteItem(id) {
-    clientApi.delete(`/api/categories/${id}`).then((res) => {
+    clientApi.delete(`/categories/${id}`).then((res) => {
         categoriesStore.categories = categoriesStore.categories.filter((category) =>
             category.id !== id
         );
