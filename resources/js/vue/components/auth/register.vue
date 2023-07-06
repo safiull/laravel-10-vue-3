@@ -15,8 +15,9 @@ function register() {
     clientApi.post('/register', formData.value)
     .then(res => {
         if (res.data?.data?.token) {
-            toastr.success("Login successfully.");
+            toastr.success("Registration & Login successfully.");
             localStorage.setItem('token', res.data.data.token)
+            localStorage.setItem('expires_at', res.data.data.expires_at)
             router.push('/dashboard');
         }
     })

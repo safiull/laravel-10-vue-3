@@ -16,6 +16,7 @@ function login() {
         if (res.data?.data?.token) {
             toastr.success("Login successfully.");
             localStorage.setItem('token', res.data.data.token)
+            localStorage.setItem('expires_at', res.data.data.expires_at)
             router.push('/dashboard');
         }
     })
