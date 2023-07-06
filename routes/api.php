@@ -18,6 +18,6 @@ use App\Http\Controllers\Api\CategoryController;
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
-Route::group(['middleware' => ['auth:sanctum', 'checkTokenExpiration']], function () {
+Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::apiResource('categories', CategoryController::class);
 });

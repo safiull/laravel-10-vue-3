@@ -1,4 +1,5 @@
 import axios from "axios";
+import router from './routes'
 const token = localStorage.getItem('token');
 
 const clientApi = axios.create({
@@ -11,20 +12,15 @@ clientApi.interceptors.request.use(config => {
 })
 
 clientApi.interceptors.response.use(response => {
-    console.log("Okay");
+    return response
     return response
 }, error => {
+    console.log(error.response.status);
     if (error.response.status === 401) {
         localStorage.removeItem('token')
-        router.push({
-            name: 'login'
-        })
-        console.log(401);
+        router.push('/login');
     } else if (error.response.status === 404) {
-        router.push({
-            name: 'not-found'
-        })
-        console.log(404);
+        router.push('/');
     }
     throw error
 })
