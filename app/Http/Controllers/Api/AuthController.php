@@ -6,6 +6,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Config;
+use Laravel\Sanctum\NewAccessToken;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -21,11 +24,13 @@ class AuthController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
+        $accessToken = $user->createToken('createToken');
+        $this->setAccessTokenExpiration($accessToken);
+
         $data = [
             'user_id' => $user->id,
             'token_type' => 'Bearer',
-            'token' => $user->createToken('createTocket')->plainTextToken,
-            'expires_at' => now()->addMinutes(Config::get('session.lifetime')),
+            'token' => $accessToken->plainTextToken,
         ];
 
         return response()->json([
@@ -45,8 +50,11 @@ class AuthController extends Controller
             $user = auth()->user();
             $data['name'] = $user->name;
             $data['email'] = $user->email;
-            $data['token'] = $user->createToken('createToken')->plainTextToken;
-            $data['expires_at'] = now()->addMinutes(Config::get('session.lifetime'));
+
+            $accessToken = $user->createToken('createToken');
+            $this->setAccessTokenExpiration($accessToken);
+
+            $data['token'] = $accessToken->plainTextToken;
 
             return response()->json([
                 'data' => $data,
@@ -57,5 +65,14 @@ class AuthController extends Controller
                 'message' => 'Invalid email or password!'
             ], 404);
         }
+    }
+
+    protected function setAccessTokenExpiration(NewAccessToken $accessToken)
+    {
+        $expiration = Carbon::now()->addMinutes(Config::get('sanctum.expiration'));
+
+        DB::table('personal_access_tokens')
+            ->where('id', $accessToken->accessToken->id)
+            ->update(['expires_at' => $expiration]);
     }
 }
