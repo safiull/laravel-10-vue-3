@@ -56,6 +56,9 @@ class AuthController extends Controller
 
             $data['token'] = $accessToken->plainTextToken;
 
+            // Remove previous tokens;
+            $user->tokens()->where('id', '!=', $accessToken->accessToken->id)->delete();
+
             return response()->json([
                 'data' => $data,
                 'message' => 'Logged in successfully!',
