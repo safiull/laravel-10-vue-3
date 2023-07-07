@@ -1,28 +1,27 @@
 import axios from "axios";
 import router from './routes'
+
 const token = localStorage.getItem('token');
 
 const clientApi = axios.create({
-    baseURL: '/api'
-})
-
-clientApi.interceptors.request.use(config => {
-    config.headers.Authorization = `Bearer ${token}`
-    return config
-})
+    baseURL: '/api',
+    headers: {
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${token}`
+    }
+});
 
 clientApi.interceptors.response.use(response => {
-    return response
-    return response
+    return response;
 }, error => {
     console.log(error.response.status);
     if (error.response.status === 401) {
-        localStorage.removeItem('token')
+        localStorage.removeItem('token');
         router.push('/login');
     } else if (error.response.status === 404) {
         router.push('/');
     }
-    throw error
-})
+    throw error;
+});
 
 export default clientApi;

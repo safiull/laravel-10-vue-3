@@ -69,7 +69,7 @@ class AuthController extends Controller
 
     protected function setAccessTokenExpiration(NewAccessToken $accessToken)
     {
-        $expiration = Carbon::now()->addMinutes(1);
+        $expiration = now()->addMinutes(Config::get('sanctum.expiration'));
 
         DB::table('personal_access_tokens')
             ->where('id', $accessToken->accessToken->id)
