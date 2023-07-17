@@ -2,7 +2,6 @@ import axios from "axios";
 import router from './routes'
 
 const token = localStorage.getItem('token');
-
 const clientApi = axios.create({
     baseURL: '/api',
     headers: {
@@ -14,7 +13,6 @@ const clientApi = axios.create({
 clientApi.interceptors.response.use(response => {
     return response;
 }, error => {
-    console.log(error.response.status);
     if (error.response.status === 401) {
         localStorage.removeItem('token');
         router.push('/login');

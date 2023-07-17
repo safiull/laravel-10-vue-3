@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Config;
 use Laravel\Sanctum\NewAccessToken;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
